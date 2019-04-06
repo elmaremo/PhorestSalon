@@ -16,7 +16,7 @@ public class Client {
 
 	@Id
 	@NotNull
-	private int id;
+	private String id;
 
 	private String first_name;
 
@@ -29,13 +29,13 @@ public class Client {
 
 	private String gender;
 
-	private boolean banned;
+	private Boolean banned;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -79,11 +79,11 @@ public class Client {
 		this.gender = gender;
 	}
 
-	public boolean isBanned() {
+	public Boolean isBanned() {
 		return banned;
 	}
 
-	public void setBanned(boolean banned) {
+	public void setBanned(Boolean banned) {
 		this.banned = banned;
 	}
 

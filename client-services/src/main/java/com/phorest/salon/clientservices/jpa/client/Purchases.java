@@ -30,9 +30,9 @@ public class Purchases {
 
 	private String name;
 
-	private int price;
+	private Double price;
 
-	private int loyalty_points;
+	private Integer loyalty_points;
 
 	public String getId() {
 		return id;
@@ -58,19 +58,19 @@ public class Purchases {
 		this.name = name;
 	}
 
-	public int getPrice() {
+	public Double getPrice() {
 		return price;
 	}
 
-	public void setPrice(int price) {
+	public void setPrice(Double price) {
 		this.price = price;
 	}
 
-	public int getLoyalty_points() {
+	public Integer getLoyalty_points() {
 		return loyalty_points;
 	}
 
-	public void setLoyalty_points(int loyalty_points) {
+	public void setLoyalty_points(Integer loyalty_points) {
 		this.loyalty_points = loyalty_points;
 	}
 
