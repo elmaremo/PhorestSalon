@@ -1,24 +1,40 @@
 package com.phorest.salon.clientservices.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import com.phorest.salon.clientservices.processor.PhorestAppointmentCSVProcessor;
 import com.phorest.salon.clientservices.processor.PhorestCSVProcessorFactory;
+import com.phorest.salon.clientservices.processor.PhorestClientCSVProcessor;
+import com.phorest.salon.clientservices.processor.PhorestPurchasesCSVProcessor;
+import com.phorest.salon.clientservices.processor.PhorestServicesCSVProcessor;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(PhorestClientController.class)
+@SpringBootTest
+@AutoConfigureMockMvc
 public class PhorestClientControllerTest {
 	@Autowired
 	private MockMvc mvc;
-
 	@MockBean
+	private PhorestClientCSVProcessor phorestClientCSVProcessor;
+	@MockBean
+	private PhorestAppointmentCSVProcessor phorestappointmentCSVProcessor;
+	@MockBean
+	private PhorestServicesCSVProcessor phorestServicesCSVProcessor;
+	@MockBean
+	private PhorestPurchasesCSVProcessor phorestPurchasesCSVProcessor;
+	
+	@Autowired
 	private PhorestCSVProcessorFactory phorestCSVProcessorFactory;
 	
 	@Test
@@ -35,7 +51,7 @@ public class PhorestClientControllerTest {
 		
 		
 
-		MockMultipartFile appointmentsFile = new MockMultipartFile("appointments_csv", "appointments.csv", "text/plain",
+		MockMultipartFile appointmentsFile = new MockMultipartFile("appointment_csv", "appointments.csv", "text/plain",
 				str.toString().getBytes());
 		
 
@@ -50,7 +66,8 @@ public class PhorestClientControllerTest {
                 .file(clientsFile)
                 .file(appointmentsFile)
                 .file(servicesFile)
-                .file(purchasesFile));
+                .file(purchasesFile))
+	    .andExpect(status().isOk());
 	   //TODO
 	      
 	}
