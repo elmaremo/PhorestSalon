@@ -1,13 +1,17 @@
 package com.phorest.salon.clientservices.jpa.client;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -36,6 +40,14 @@ public class Appointments {
 	@JoinColumn(name = "client_id", nullable = false)
 	@OnDelete(action = OnDeleteAction.CASCADE)
 	private Client client;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "appointment")
+	private Set<Purchases> purchases = new HashSet<>();
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "appointment")
+	private Set<Services> services = new HashSet<>();
+
+
 
 	public String getId() {
 		return id;

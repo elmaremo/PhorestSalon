@@ -1,7 +1,13 @@
 package com.phorest.salon.clientservices.jpa.client;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
@@ -30,6 +36,24 @@ public class Client {
 	private String gender;
 
 	private Boolean banned;
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "client")
+	private Set<Appointments> appointments = new HashSet<>();
+
+	
+	
+	
+	public Set<Appointments> getAppointments() {
+		return appointments;
+	}
+
+	public void setAppointments(Set<Appointments> appointments) {
+		this.appointments = appointments;
+	}
+
+	public Boolean getBanned() {
+		return banned;
+	}
 
 	public String getId() {
 		return id;
