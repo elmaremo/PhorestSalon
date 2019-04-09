@@ -3,7 +3,6 @@ package com.phorest.salon.clientservices.jpa.client;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
-import java.time.LocalDateTime;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -17,8 +16,6 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 /**
  * This entity is created for Appointments
@@ -79,5 +76,21 @@ public class Appointments {
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+
+	public Set<Purchases> getPurchases() {
+		return purchases;
+	}
+
+	public void setPurchases(Set<Purchases> purchases) {
+		this.purchases = purchases;
+	}
+
+	public Set<Services> getServices() {
+		return services;
+	}
+
+	public void setServices(Set<Services> services) {
+		this.services = services;
 	}
 }

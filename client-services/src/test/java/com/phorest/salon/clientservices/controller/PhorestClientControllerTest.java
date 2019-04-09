@@ -14,7 +14,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.phorest.salon.clientservices.processor.PhorestAppointmentCSVProcessor;
-import com.phorest.salon.clientservices.processor.PhorestCSVProcessorFactory;
 import com.phorest.salon.clientservices.processor.PhorestClientCSVProcessor;
 import com.phorest.salon.clientservices.processor.PhorestPurchasesCSVProcessor;
 import com.phorest.salon.clientservices.processor.PhorestServicesCSVProcessor;
@@ -34,14 +33,10 @@ public class PhorestClientControllerTest {
 	@MockBean
 	private PhorestPurchasesCSVProcessor phorestPurchasesCSVProcessor;
 	
-	@Autowired
-	private PhorestCSVProcessorFactory phorestCSVProcessorFactory;
-	
 	@Test
 	public void importCSVSuccess()
 	  throws Exception {
 	     
-		String message = "Success";
 		StringBuilder str=new StringBuilder();
 		str.append("id,first_name,last_name,email,phone,gender,banned \n")
 		.append("e0b8ebfc-6e57-4661-9546-328c644a3764,Dori,Dietrich,patrica@keeling.net,(272) 301-6356,Male,false \n")
@@ -100,6 +95,7 @@ public class PhorestClientControllerTest {
 	    .andExpect(status().isBadRequest());
 	      
 	}
+	
 	
 	
 }
