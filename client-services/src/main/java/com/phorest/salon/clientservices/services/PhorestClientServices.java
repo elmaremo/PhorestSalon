@@ -43,8 +43,9 @@ public class PhorestClientServices {
 
 		HashMap<String, Integer> map = new HashMap<>();
 		List<LoyalClientDTO> loyalClientList = new ArrayList<>();
+		LoyalClientDTO dto =null;
 		for (Appointments appointments : apppointmentsList) {
-			LoyalClientDTO dto = new LoyalClientDTO();
+			
 			Integer points = 0;
 
 			Set<Purchases> purchases = appointments.getPurchases();
@@ -61,16 +62,18 @@ public class PhorestClientServices {
 			String clientId = client.getId();
 
 			if (map.get(clientId) == null) {
+				dto= new LoyalClientDTO();
+				dto.setFirst_name(client.getFirst_name());
+				dto.setLast_name(client.getLast_name());
+				dto.setEmail(client.getEmail());
+				dto.setGender(client.getGender());
+				dto.setPhone(client.getPhone());
+			
 				map.put(clientId, points);
 			} else {
 				map.put(clientId, map.get(clientId) + points);
 			}
-
-			dto.setFirst_name(client.getFirst_name());
-			dto.setLast_name(client.getLast_name());
-			dto.setEmail(client.getEmail());
-			dto.setGender(client.getGender());
-			dto.setPhone(client.getPhone());
+			if(dto!=null)
 			dto.setLoyalty_points(map.get(clientId));
 
 			loyalClientList.add(dto);
