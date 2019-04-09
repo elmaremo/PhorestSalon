@@ -41,6 +41,7 @@ public class PhorestClientControllerTest {
 	public void importCSVSuccess()
 	  throws Exception {
 	     
+		String message = "Success";
 		StringBuilder str=new StringBuilder();
 		str.append("id,first_name,last_name,email,phone,gender,banned \n")
 		.append("e0b8ebfc-6e57-4661-9546-328c644a3764,Dori,Dietrich,patrica@keeling.net,(272) 301-6356,Male,false \n")
@@ -68,7 +69,37 @@ public class PhorestClientControllerTest {
                 .file(servicesFile)
                 .file(purchasesFile))
 	    .andExpect(status().isOk());
-	   //TODO
 	      
 	}
+	
+	@Test
+	public void importCSV_FileNotUploaded()
+	  throws Exception {
+	     
+		StringBuilder str=new StringBuilder();
+		str.append("id,first_name,last_name,email,phone,gender,banned \n")
+		.append("e0b8ebfc-6e57-4661-9546-328c644a3764,Dori,Dietrich,patrica@keeling.net,(272) 301-6356,Male,false \n")
+		.append("104fdf33-c8a2-4f1c-b371-3e9c2facdfa0,Gordon,Hammes,glen@cummerata.co,403-844-1643,Male,false");
+		
+
+		MockMultipartFile appointmentsFile = new MockMultipartFile("appointment_csv", "appointments.csv", "text/plain",
+				str.toString().getBytes());
+		
+
+		MockMultipartFile servicesFile = new MockMultipartFile("services_csv", "services.csv", "text/plain",
+				str.toString().getBytes());
+		
+
+		MockMultipartFile purchasesFile = new MockMultipartFile("purchases_csv", "purchases.csv", "text/plain",
+				str.toString().getBytes());
+	 
+	    mvc.perform(MockMvcRequestBuilders.multipart("/phorest/importcsv")
+                .file(appointmentsFile)
+                .file(servicesFile)
+                .file(purchasesFile))
+	    .andExpect(status().isBadRequest());
+	      
+	}
+	
+	
 }

@@ -14,5 +14,5 @@ import com.phorest.salon.clientservices.jpa.client.Appointments;
  */
 @Repository
 public interface AppointmentRepository extends JpaRepository<Appointments, String> {
-
+	
 }

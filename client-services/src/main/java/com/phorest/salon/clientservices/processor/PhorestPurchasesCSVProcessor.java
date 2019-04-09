@@ -7,6 +7,8 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,9 +25,12 @@ public class PhorestPurchasesCSVProcessor implements PhorestCSVProcessor {
 	
 	@Autowired
 	private AppointmentRepository appointmentrepo;
+	
+	private static final Logger logger = LoggerFactory.getLogger(PhorestPurchasesCSVProcessor.class);
 
 	@Override
 	public Boolean processCSV(MultipartFile file) {
+		logger.debug("START - Inside processCSV of PhorestPurchasesCSVProcessor");
 		BufferedReader br;
 		List<Purchases> listOfPurchases = new ArrayList<>();
 		try {
@@ -49,10 +54,10 @@ public class PhorestPurchasesCSVProcessor implements PhorestCSVProcessor {
 			     count++;
 		     }
 		     purchaserepo.saveAll(listOfPurchases);
-		     
+		     logger.debug("END - Inside processCSV of PhorestPurchasesCSVProcessor");
 		
 	 } catch (IOException e) {
-	    System.err.println(e.getMessage());       //TODO
+		 logger.error(e.getMessage());       
 	  }
 		return Boolean.TRUE;
 	}
