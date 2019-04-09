@@ -50,14 +50,14 @@ public class PhorestClientCSVProcessor implements PhorestCSVProcessor {
 					}
 
 					Client c = new Client();
-					c.setId(arrayofClients[0]);
-					c.setFirst_name(arrayofClients[1]);
-					c.setLast_name(arrayofClients[2]);
+					c.setId(arrayofClients[0].trim());
+					c.setFirst_name(arrayofClients[1].trim());
+					c.setLast_name(arrayofClients[2].trim());
 
-					c.setEmail(arrayofClients[3]);
-					c.setPhone(arrayofClients[4]);
-					c.setGender(arrayofClients[5]);
-					c.setBanned(Boolean.valueOf(arrayofClients[6]));
+					c.setEmail(arrayofClients[3].trim());
+					c.setPhone(arrayofClients[4].trim());
+					c.setGender(arrayofClients[5].trim());
+					c.setBanned(Boolean.valueOf(arrayofClients[6].trim()));
 					listOfClients.add(c);
 
 				}
@@ -81,25 +81,25 @@ public class PhorestClientCSVProcessor implements PhorestCSVProcessor {
 		if (headers.length != 7) {
 			throw new PhorestCSVValidationException("Expected number of column is 7");
 		}
-		if (!"id".equalsIgnoreCase(headers[0])) {
+		if (!"id".equalsIgnoreCase(headers[0].trim())) {
 			throw new PhorestCSVValidationException("1st column in Client.csv is Client Id ");
 		}
-		if (!"first_name".equalsIgnoreCase(headers[1])) {
+		if (!"first_name".equalsIgnoreCase(headers[1].trim())) {
 			throw new PhorestCSVValidationException("2nd column in Client.csv is firstName ");
 		}
-		if (!"last_name".equalsIgnoreCase(headers[2])) {
+		if (!"last_name".equalsIgnoreCase(headers[2].trim())) {
 			throw new PhorestCSVValidationException("3rd column in Client.csv is last_name ");
 		}
-		if (!"email".equalsIgnoreCase(headers[3])) {
+		if (!"email".equalsIgnoreCase(headers[3].trim())) {
 			throw new PhorestCSVValidationException("4th column in Client.csv is email ");
 		}
-		if (!"phone".equalsIgnoreCase(headers[4])) {
+		if (!"phone".equalsIgnoreCase(headers[4].trim())) {
 			throw new PhorestCSVValidationException("5th column in Client.csv is phone ");
 		}
-		if (!"gender".equalsIgnoreCase(headers[5])) {
+		if (!"gender".equalsIgnoreCase(headers[5].trim())) {
 			throw new PhorestCSVValidationException("6th column in Client.csv is gender ");
 		}
-		if (!"banned".equalsIgnoreCase(headers[6])) {
+		if (!"banned".equalsIgnoreCase(headers[6].trim())) {
 			throw new PhorestCSVValidationException("7th column in Client.csv is banned ");
 		}
 

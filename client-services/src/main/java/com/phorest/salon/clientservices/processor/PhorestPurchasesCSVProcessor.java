@@ -42,12 +42,12 @@ public class PhorestPurchasesCSVProcessor implements PhorestCSVProcessor {
 		    	 if(count>=1) {
 		    	 String[] arrayofPurchases = line.split(",");
 		    	 Purchases purchase = new Purchases();
-		    	 purchase.setId(arrayofPurchases[0]);
-		    	 purchase.setAppointment(appointmentrepo.findById(arrayofPurchases[1]).get());
-		    	 purchase.setName(arrayofPurchases[2]);
+		    	 purchase.setId(arrayofPurchases[0].trim());
+		    	 purchase.setAppointment(appointmentrepo.findById(arrayofPurchases[1].trim()).get());
+		    	 purchase.setName(arrayofPurchases[2].trim());
 			     
-		    	 purchase.setPrice(Double.valueOf(arrayofPurchases[3]));
-		    	 purchase.setLoyalty_points(Integer.valueOf(arrayofPurchases[4]));
+		    	 purchase.setPrice(Double.valueOf(arrayofPurchases[3].trim()));
+		    	 purchase.setLoyalty_points(Integer.valueOf(arrayofPurchases[4].trim()));
 		    	 listOfPurchases.add(purchase);
 			     
 		    	 }

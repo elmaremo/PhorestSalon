@@ -43,12 +43,12 @@ public class PhorestServicesCSVProcessor implements PhorestCSVProcessor {
 				if (count >= 1) {
 					String[] arrayofServices = line.split(",");
 					Services service = new Services();
-					service.setId(arrayofServices[0]);
-					service.setAppointment(appointmentrepo.findById(arrayofServices[1]).get());
-					service.setName(arrayofServices[2]);
+					service.setId(arrayofServices[0].trim());
+					service.setAppointment(appointmentrepo.findById(arrayofServices[1].trim()).get());
+					service.setName(arrayofServices[2].trim());
 
-					service.setPrice(Double.valueOf(arrayofServices[3]));
-					service.setLoyalty_points(Integer.valueOf(arrayofServices[4]));
+					service.setPrice(Double.valueOf(arrayofServices[3].trim()));
+					service.setLoyalty_points(Integer.valueOf(arrayofServices[4].trim()));
 					listOfServices.add(service);
 
 				}

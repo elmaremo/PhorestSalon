@@ -54,13 +54,13 @@ public class PhorestAppointmentCSVProcessor implements PhorestCSVProcessor {
 				if (count >= 1) {
 					String[] arrayofAppointments = line.split(",");
 					Appointments appointments = new Appointments();
-					appointments.setId(arrayofAppointments[0]);
+					appointments.setId(arrayofAppointments[0].trim());
 
-					appointments.setClient(clientrepo.findById(arrayofAppointments[1]).get());
+					appointments.setClient(clientrepo.findById(arrayofAppointments[1].trim()).get());
 
-					appointments.setStart_time(LocalDateTime.parse(arrayofAppointments[2], dateformatter));
+					appointments.setStart_time(LocalDateTime.parse(arrayofAppointments[2].trim(), dateformatter));
 
-					appointments.setEnd_time(LocalDateTime.parse(arrayofAppointments[3], dateformatter));
+					appointments.setEnd_time(LocalDateTime.parse(arrayofAppointments[3].trim(), dateformatter));
 
 					listOfAppointments.add(appointments);
 
@@ -88,16 +88,16 @@ public class PhorestAppointmentCSVProcessor implements PhorestCSVProcessor {
 		if (headers.length != 4) {
 			throw new PhorestCSVValidationException("Expected number of column is 4");
 		}
-		if (!"id".equalsIgnoreCase(headers[0])) {
+		if (!"id".equalsIgnoreCase(headers[0].trim())) {
 			throw new PhorestCSVValidationException("1st column in Appointment.csv is appointemnt Id ");
 		}
-		if (!"client_id".equalsIgnoreCase(headers[1])) {
+		if (!"client_id".equalsIgnoreCase(headers[1].trim())) {
 			throw new PhorestCSVValidationException("2nd column in Appointment.csv is client id ");
 		}
-		if (!"start_time".equalsIgnoreCase(headers[2])) {
+		if (!"start_time".equalsIgnoreCase(headers[2].trim())) {
 			throw new PhorestCSVValidationException("3rd column in Appointment.csv is start_time ");
 		}
-		if (!"end_time".equalsIgnoreCase(headers[3])) {
+		if (!"end_time".equalsIgnoreCase(headers[3].trim())) {
 			throw new PhorestCSVValidationException("4th column in Appointment.csv is end_time ");
 		}
 

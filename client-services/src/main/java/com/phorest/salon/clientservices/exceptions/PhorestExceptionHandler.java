@@ -1,5 +1,7 @@
 package com.phorest.salon.clientservices.exceptions;
 
+import java.time.format.DateTimeParseException;
+
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +27,7 @@ public class PhorestExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	
-	@ExceptionHandler({ PhorestCSVValidationException.class })
+	@ExceptionHandler({ PhorestCSVValidationException.class,DateTimeParseException.class })
 	public ResponseEntity<Object> handleAll(Exception ex, WebRequest request) {
 		ResponseDTO responseDTO = new ResponseDTO();
 		responseDTO.setMessage(ex.getMessage());
